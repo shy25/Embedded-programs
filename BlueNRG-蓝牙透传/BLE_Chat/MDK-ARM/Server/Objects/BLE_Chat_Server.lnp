@@ -1,0 +1,28 @@
+--cpu Cortex-M0
+".\server\objects\bluenrg1_uart.o"
+".\server\objects\bluenrg1_crmu.o"
+".\server\objects\bluenrg1_gpio.o"
+".\server\objects\misc.o"
+".\server\objects\bluenrg1_flash.o"
+".\server\objects\bluenrg1_wdg.o"
+".\server\objects\bluenrg1_rng.o"
+".\server\objects\sdk_eval_config.o"
+".\server\objects\sdk_eval_com.o"
+".\server\objects\system_bluenrg1.o"
+".\server\objects\ble_chat_main.o"
+".\server\objects\osal.o"
+".\server\objects\chat.o"
+".\server\objects\gatt_db.o"
+".\server\objects\bluenrg1_it.o"
+".\server\objects\para_center.o"
+".\server\objects\para_unit.o"
+".\server\objects\comm.o"
+".\server\objects\context_switch.o"
+".\server\objects\clock.o"
+".\server\objects\gp_timer.o"
+".\server\objects\sleep.o"
+"..\..\Library\Bluetooth_LE\library\bluenrg1_stack_lib_0_9_keil.lib"
+--diag_suppress 6314 --strict --scatter ".\BlueNRG1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Server\Listings\BLE_Chat_Server.map" -o .\Server\Objects\BLE_Chat_Server.axf

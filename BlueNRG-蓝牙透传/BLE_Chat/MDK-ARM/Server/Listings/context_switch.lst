@@ -1,0 +1,244 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         #line   1                "..\\..\\Library\\hal\\src\\con
+text_switch.s"
+    1 00000000         #line   1                "..\\..\\Library\\hal\\src\\../
+inc/asm.h"
+    1 00000000         
+    2 00000000         
+    3 00000000         
+    4 00000000         
+    5 00000000         
+    6 00000000         
+    7 00000000         
+    8 00000000         
+    9 00000000         
+   10 00000000         
+   11 00000000         
+   12 00000000         
+   13 00000000         
+   14 00000000         
+   15 00000000         
+   16 00000000         
+   17 00000000         
+   18 00000000         
+   19 00000000         
+   20 00000000         #line   66               "..\\..\\Library\\hal\\src\\../
+inc/asm.h"
+   66 00000000         
+   67 00000000         
+   68 00000000         
+   69 00000000         
+   70 00000000         
+   71 00000000         
+   72 00000000         
+   73 00000000         
+   74 00000000         #line   2                "..\\..\\Library\\hal\\src\\con
+text_switch.s"
+    2 00000000         
+    3 00000000         
+    4 00000000         
+    5 00000000         
+    6 00000000         
+    7 00000000         
+    8 00000000         
+    9 00000000         
+   10 00000000         
+   11 00000000         
+   12 00000000         
+   13 00000000         
+   14 00000000         
+   15 00000000         
+   16 00000000         
+   17 00000000         
+   18 00000000         
+   19 00000000         
+   20 00000000                 AREA             |. bss|, DATA, READWRITE, NOINI
+T
+   21 00000000                 EXPORT           wakeupFromSleepFlag
+   22 00000000         wakeupFromSleepFlag
+   23 00000000                 SPACE            1
+   24 00000001                 ALIGN            4
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   25 00000004         
+   26 00000004         
+   27 00000004         
+   28 00000004         
+   29 00000004         
+   30 00000004         
+   31 00000004         
+   32 00000004         
+   33 00000004         
+   34 00000004         
+   35 00000004         
+   36 00000004         
+   37 00000004                 AREA             |. bss|, DATA, READWRITE, NOINI
+T
+   38 00000004                 EXPORT           savedMSP
+   39 00000004         savedMSP
+   40 00000004                 SPACE            4
+   41 00000008         
+   42 00000008         
+   43 00000008         
+   44 00000008         
+   45 00000008         
+   46 00000008         
+   47 00000008         
+   48 00000008         
+   49 00000008         
+   50 00000008         
+   51 00000008         
+   52 00000008         
+   53 00000008         
+   54 00000008         
+   55 00000008         
+   56 00000008                 AREA             |. text|, CODE, READONLY
+   57 00000000         
+   58 00000000                 EXPORT           CS_contextSave
+   59 00000000                 EXPORT           CS_contextRestore
+   60 00000000         CS_contextSave
+                               PROC
+   61 00000000 B5F0            PUSH             { r4 - r7, lr }
+   62 00000002 4643            MOV              R3, R8
+   63 00000004 464C            MOV              R4, R9
+   64 00000006 4655            MOV              R5, R10
+   65 00000008 465E            MOV              R6, R11
+   66 0000000A 4667            MOV              R7, R12
+   67 0000000C B4F8            PUSH             {R3-R7}
+   68 0000000E 4C0A            LDR              R4, =savedMSP
+   69 00000010 466B            MOV              R3, SP
+   70 00000012 6023            STR              R3, [R4]
+   71 00000014 F3BF 8F4F       DSB
+   72 00000018 BF30            WFI
+   73 0000001A                 ENDP
+   74 0000001A         
+   75 0000001A         CS_contextRestore
+                               PROC
+   76 0000001A         
+   77 0000001A         
+   78 0000001A         
+   79 0000001A         
+   80 0000001A 4C07            LDR              R4, =savedMSP
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   81 0000001C 6824            LDR              R4, [R4]
+   82 0000001E 46A5            MOV              SP, R4
+   83 00000020 BCF8            POP              {R3-R7}
+   84 00000022 4698            MOV              R8, R3
+   85 00000024 46A1            MOV              R9, R4
+   86 00000026 46AA            MOV              R10, R5
+   87 00000028 46B3            MOV              R11, R6
+   88 0000002A 46BC            MOV              R12, R7
+   89 0000002C BDF0            POP              { R4 - R7, PC }
+   90 0000002E                 ENDP
+   91 0000002E         
+   92 0000002E         
+   93 0000002E         
+   94 0000002E         
+   95 0000002E         
+   96 0000002E         
+   97 0000002E         
+   98 0000002E                 EXPORT           BlueNRG_IdleSleep
+   99 0000002E         BlueNRG_IdleSleep
+                               PROC
+  100 0000002E BF00            NOP
+  101 00000030 BF30            WFI
+  102 00000032 BF00            NOP
+  103 00000034 4770            BX               LR
+  104 00000036                 ENDP
+  105 00000036         
+  106 00000036         
+  107 00000036 00 00           ALIGN            4
+  108 00000038                 END
+              00000000 
+Command Line: --debug --xref --cpreproc --diag_suppress=9931 --cpu=Cortex-M0 --
+apcs=interwork --depend=.\server\objects\context_switch.d -o.\server\objects\co
+ntext_switch.o -I.\RTE\_Server -ID:\Keil\ARM\CMSIS\Include --predefine="__UVISI
+ON_VERSION SETA 524" --list=.\server\listings\context_switch.lst ..\..\Library\
+hal\src\context_switch.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+. bss 00000000
+
+Symbol: . bss
+   Definitions
+      At line 20 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      None
+Comment: . bss unused
+savedMSP 00000004
+
+Symbol: savedMSP
+   Definitions
+      At line 39 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      At line 38 in file ..\\..\\Library\\hal\\src\\context_switch.s
+      At line 68 in file ..\\..\\Library\\hal\\src\\context_switch.s
+      At line 80 in file ..\\..\\Library\\hal\\src\\context_switch.s
+
+wakeupFromSleepFlag 00000000
+
+Symbol: wakeupFromSleepFlag
+   Definitions
+      At line 22 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      At line 21 in file ..\\..\\Library\\hal\\src\\context_switch.s
+Comment: wakeupFromSleepFlag used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+. text 00000000
+
+Symbol: . text
+   Definitions
+      At line 56 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      None
+Comment: . text unused
+BlueNRG_IdleSleep 0000002E
+
+Symbol: BlueNRG_IdleSleep
+   Definitions
+      At line 99 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      At line 98 in file ..\\..\\Library\\hal\\src\\context_switch.s
+Comment: BlueNRG_IdleSleep used once
+CS_contextRestore 0000001A
+
+Symbol: CS_contextRestore
+   Definitions
+      At line 75 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      At line 59 in file ..\\..\\Library\\hal\\src\\context_switch.s
+Comment: CS_contextRestore used once
+CS_contextSave 00000000
+
+Symbol: CS_contextSave
+   Definitions
+      At line 60 in file ..\\..\\Library\\hal\\src\\context_switch.s
+   Uses
+      At line 58 in file ..\\..\\Library\\hal\\src\\context_switch.s
+Comment: CS_contextSave used once
+4 symbols
+340 symbols in table

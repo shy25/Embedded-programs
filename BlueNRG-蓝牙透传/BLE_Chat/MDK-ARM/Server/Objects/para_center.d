@@ -1,0 +1,14 @@
+.\server\objects\para_center.o: ..\src\para_center.c
+.\server\objects\para_center.o: ..\inc\para_center.h
+.\server\objects\para_center.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\server\objects\para_center.o: ..\..\Library\BlueNRG1_Periph_Driver\inc\BlueNRG1_flash.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Device\ST\BlueNRG1\Include\BlueNRG1.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Include\core_cm0.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Include\core_cmInstr.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Include\core_cmFunc.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Device\ST\BlueNRG1\Include\system_BlueNRG1.h
+.\server\objects\para_center.o: ..\..\Library\hal\inc\compiler.h
+.\server\objects\para_center.o: ..\..\Library\hal\inc\hal_types.h
+.\server\objects\para_center.o: ..\..\Library\CMSIS\Include\core_cm0.h
+.\server\objects\para_center.o: ..\inc\para_unit.h
+.\server\objects\para_center.o: D:\Keil\ARM\ARMCC\Bin\..\include\string.h
